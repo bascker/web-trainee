@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>war</packaging>
+
+    <groupId>com.bascker.framework</groupId>
+    <artifactId>web-trainee</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <servlet.version>3.1.0</servlet.version>
+        <jsp.version>2.2.1</jsp.version>
+        <jstl.version>1.2</jstl.version>
+
+        <mvn.compiler.version>3.7.0</mvn.compiler.version>
+        <mvn.compiler.source>1.8</mvn.compiler.source>
+        <mvn.compiler.target>1.8</mvn.compiler.target>
+        <mvn.tomcat.version>2.2</mvn.tomcat.version>
+        <mvn.tomcat.path>/</mvn.tomcat.path>
+        <mvn.tomcat.port>80</mvn.tomcat.port>
+        <mvn.tomcat.encode>UTF-8</mvn.tomcat.encode>
+    </properties>
+
+    <dependencies>
+        <!-- Servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+            <!-- 用于编译，但不打包 -->
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- JSP -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>${jsp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- JSTL -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
+            <!-- 运行时需要，无需参与编译 -->
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>web-trainee-${project.version}</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${mvn.compiler.version}</version>
+                    <configuration>
+                        <source>${mvn.compiler.source}</source>
+                        <target>${mvn.compiler.target}</target>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>${mvn.tomcat.version}</version>
+                    <configuration>
+                        <path>${mvn.tomcat.path}</path>
+                        <port>${mvn.tomcat.port}</port>
+                        <server>tomcat7</server>
+                        <uriEncoding>${mvn.tomcat.encode}</uriEncoding>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
