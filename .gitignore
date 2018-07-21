@@ -1,5 +1,15 @@
-.idea/*
+target/
+
+# IDEA
+.idea/
 *.iml
+
+# Eclipse
+.setting/
+.metadata/
+.classpath
+.project
+Servers
 
 # Compiled class file
 *.class

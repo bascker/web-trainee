@@ -10,10 +10,6 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <servlet.version>3.1.0</servlet.version>
-        <jsp.version>2.2.1</jsp.version>
-        <jstl.version>1.2</jstl.version>
-
         <mvn.compiler.version>3.7.0</mvn.compiler.version>
         <mvn.compiler.source>1.8</mvn.compiler.source>
         <mvn.compiler.target>1.8</mvn.compiler.target>
@@ -21,9 +17,67 @@
         <mvn.tomcat.path>/</mvn.tomcat.path>
         <mvn.tomcat.port>80</mvn.tomcat.port>
         <mvn.tomcat.encode>UTF-8</mvn.tomcat.encode>
+
+        <slf4j.api.version>1.7.7</slf4j.api.version>
+        <slf4j.log4j12.version>1.7.7</slf4j.log4j12.version>
+        <log4j.version>1.2.17</log4j.version>
+
+        <commons.lang3.version>3.4</commons.lang3.version>
+        <commons.collections4.version>4.1</commons.collections4.version>
+        <commons.dbutils.version>1.6</commons.dbutils.version>
+        <commons.dbcp2.version>2.1.1</commons.dbcp2.version>
+
+        <servlet.version>3.1.0</servlet.version>
+        <jsp.version>2.2.1</jsp.version>
+        <jstl.version>1.2</jstl.version>
+
+        <mysql.version>5.1.38</mysql.version>
+
+
     </properties>
 
     <dependencies>
+        <!-- SLF4J -->
+        <!--<dependency>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>slf4j-api</artifactId>-->
+            <!--<version>${slf4j.api.version}</version>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.log4j12.version}</version>
+        </dependency>
+
+        <!-- Apache Commons Lang -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang3.version}</version>
+        </dependency>
+
+        <!-- Apache Commons Collections -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${commons.collections4.version}</version>
+        </dependency>
+
+        <!-- Apache Commons DbUtils： 用于 JDBC 操作 -->
+        <dependency>
+            <groupId>commons-dbutils</groupId>
+            <artifactId>commons-dbutils</artifactId>
+            <version>${commons.dbutils.version}</version>
+        </dependency>
+
+        <!-- Apache Commons DBCP2：最好的数据库连接池之一 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>${commons.dbcp2.version}</version>
+        </dependency>
+
         <!-- Servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -48,6 +102,13 @@
             <version>${jstl.version}</version>
             <!-- 运行时需要，无需参与编译 -->
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- MySQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
         </dependency>
     </dependencies>
 
