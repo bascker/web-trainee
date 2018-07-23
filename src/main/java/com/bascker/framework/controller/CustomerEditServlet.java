@@ -48,8 +48,6 @@ public class CustomerEditServlet extends HttpServlet {
     @Override
     protected void doPost(final HttpServletRequest req, final HttpServletResponse resp)
         throws ServletException, IOException {
-
-
         // value 为 String[] 是因为表单可能存在 checkbox 组件
         final Map<String, String[]> parameterMap = req.getParameterMap();
         final Map<String, Object> fieldMap = new HashMap<>();
@@ -62,6 +60,8 @@ public class CustomerEditServlet extends HttpServlet {
         });
 
         final long id = CastUtil.castLong(fieldMap.get("id"));
+        LOGGER.debug("update customer, fieldMap = {}", fieldMap);
+
         customerService.update(id, fieldMap);
         resp.sendRedirect("/customers");
     }

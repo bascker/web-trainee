@@ -10,7 +10,6 @@
     <title>编辑客户信息</title>
 </head>
 <body>
-
     <form action="/customers/edit" method="post">
         <input type="hidden" name="id" value="${customer.id}"/>
         <label>姓名</label>：<input type="text" name="name" value="${customer.name}"/><br/>

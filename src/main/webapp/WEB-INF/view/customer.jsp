@@ -1,5 +1,5 @@
 <%--
-  User: tanlang
+  User: bascker
   Date: 2018/7/22
   Time: 17:50
 --%>
@@ -11,6 +11,9 @@
     <title>客户管理</title>
 </head>
 <body>
+    <div>
+        <a href="/customers/create" name="btn-create">新增</a>
+    </div>
     <table>
         <thead>
             <tr>
