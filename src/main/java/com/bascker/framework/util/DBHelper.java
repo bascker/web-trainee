@@ -1,5 +1,6 @@
 package com.bascker.framework.util;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -8,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,6 +42,11 @@ public class DBHelper {
      */
     private static final ThreadLocal<Connection> CONNECTION_HOLDER;
 
+    /**
+     * commons-dbcp2 提供的连接池（池化技术，避免 Connection 的频繁创建，引起大量系统开销）
+     */
+    private static final BasicDataSource DATA_SOURCE;
+
     static {
         RUNNER = new QueryRunner();
 
@@ -53,11 +58,11 @@ public class DBHelper {
         USERNAME = PropsUtil.getString(props, Constant.JDBC_USERNAME);
         PASSWORD = PropsUtil.getString(props, Constant.JDBC_PASSWORD);
 
-        try {
-            Class.forName(DRIVER);
-        } catch (ClassNotFoundException e) {
-            LOGGER.error("load jdbc driver failure", e);
-        }
+        DATA_SOURCE = new BasicDataSource();
+        DATA_SOURCE.setDriverClassName(DRIVER);
+        DATA_SOURCE.setUrl(URL);
+        DATA_SOURCE.setUsername(USERNAME);
+        DATA_SOURCE.setPassword(PASSWORD);
     }
 
     /**
@@ -68,7 +73,7 @@ public class DBHelper {
         Connection conn = CONNECTION_HOLDER.get();
         if (Objects.isNull(conn)) {
             try {
-                conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+                conn = DATA_SOURCE.getConnection();
             } catch (SQLException e) {
                 LOGGER.error("get connection failure", e);
                 throw new RuntimeException(e);

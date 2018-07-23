@@ -16,6 +16,11 @@ public class PropsUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PropsUtil.class);
 
+    /**
+     * 加载 Properties 属性文件
+     * @param filename
+     * @return
+     */
     public static Properties loadProps(final String filename) {
         Properties props = null;
 
@@ -84,6 +89,13 @@ public class PropsUtil {
         return getBoolean(props, key, Boolean.FALSE);
     }
 
+    /**
+     * 获取布尔属性值
+     * @param props
+     * @param key
+     * @param defaultValue
+     * @return
+     */
     public static boolean getBoolean(final Properties props, final String key, final boolean defaultValue) {
         return props.containsKey(key) ? CastUtil.castBoolean(props.getProperty(key)) : defaultValue;
     }
