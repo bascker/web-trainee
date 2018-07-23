@@ -23,7 +23,7 @@ public class PropsUtil {
      */
     public static Properties loadProps(final String filename) {
         Properties props = null;
-
+        // 获取线程上下文中的 ClassLoader，读取 classpath（maven 项目中对应 java 和 resources 两个根目录） 下的文件
         try(InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(filename)) {
             if (Objects.isNull(is)) {
                 throw new FileNotFoundException(filename + " file is not found");

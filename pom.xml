@@ -18,6 +18,8 @@
         <mvn.tomcat.port>80</mvn.tomcat.port>
         <mvn.tomcat.encode>UTF-8</mvn.tomcat.encode>
 
+        <testng.version>6.9.10</testng.version>
+
         <slf4j.log4j12.version>1.7.7</slf4j.log4j12.version>
 
         <commons.lang3.version>3.4</commons.lang3.version>
@@ -30,11 +32,17 @@
         <jstl.version>1.2</jstl.version>
 
         <mysql.version>5.1.38</mysql.version>
-
-
     </properties>
 
     <dependencies>
+        <!-- TestNG -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- SLF4J -->
         <dependency>
             <groupId>org.slf4j</groupId>

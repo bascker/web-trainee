@@ -8,6 +8,9 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -283,7 +286,25 @@ public class DBHelper {
      */
     public static <T> boolean delete(final Class<T> entityClass, final long id) {
         final String sql = "DELETE FROM " + getTableName(entityClass) + " WHERE id = ?";
+        LOGGER.debug("execute delete operation, sql = {}", sql);
         return executeUpdate(sql, id) == 1;
+    }
+
+    /**
+     * 执行 SQL 文件
+     * @param sqlFilePath
+     */
+    public static void executeSqlFile(final String sqlFilePath) {
+        LOGGER.debug("execute sql file, sql file path = {}", sqlFilePath);
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream(sqlFilePath)))) {
+            String sql = null;
+            while (Objects.nonNull(sql = reader.readLine())) {
+                executeUpdate(sql);
+            }
+        } catch (IOException e) {
+            LOGGER.error("execute sql file failure", e);
+        }
     }
 
     /**
