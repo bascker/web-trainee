@@ -1,4 +1,4 @@
-package com.bascker.manage.util;
+package com.bascker.smartframework.util;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -8,6 +8,7 @@ import java.util.Objects;
  * 类型转换工具类
  *
  * @author bascker
+ * @since 1.0.0
  */
 public class CastUtil {
 

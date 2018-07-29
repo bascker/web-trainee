@@ -1,5 +1,7 @@
-package com.bascker.manage.util;
+package com.bascker.smartframework.helper;
 
+import com.bascker.smartframework.util.Constant;
+import com.bascker.smartframework.util.PropsUtil;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -24,6 +26,7 @@ import java.util.Properties;
  * DataBase 工具类
  *
  * @author bascker
+ * @since 1.0.0
  */
 public class DBHelper {
 

@@ -1,4 +1,4 @@
-package com.bascker.manage.util;
+package com.bascker.smartframework.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +11,9 @@ import java.util.Properties;
 
 /**
  * Properties 文件工具类
+ *
+ * @author bascker
+ * @since 1.0.0
  */
 public class PropsUtil {
 

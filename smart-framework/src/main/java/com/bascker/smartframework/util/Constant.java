@@ -1,9 +1,10 @@
-package com.bascker.manage.util;
+package com.bascker.smartframework.util;
 
 /**
  * 常量类
  *
  * @author bascker
+ * @since 1.0.0
  */
 public class Constant {
 
@@ -51,6 +52,16 @@ public class Constant {
      * jdbc.password
      */
     public static final String JDBC_PASSWORD = "jdbc.password";
+
+    /**
+     * application/json
+     */
+    public static final String JSON_TYPE = "application/json";
+
+    /**
+     * UTF-8
+     */
+    public static final String UTF8 = "UTF-8";
 
 
     private Constant() {}

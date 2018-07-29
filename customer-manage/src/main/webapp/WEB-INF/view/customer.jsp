@@ -34,6 +34,7 @@
                     <td>${customer.email}</td>
                     <td>${customer.remark}</td>
                     <td>
+                        <a href="${BASE}/customers/show?id=${customer.id}">详情</a>&nbsp;&nbsp;
                         <a href="${BASE}/customers/edit?id=${customer.id}">编辑</a>&nbsp;&nbsp;
                         <a href="${BASE}/customers/delete?id=${customer.id}">删除</a>
                     </td>

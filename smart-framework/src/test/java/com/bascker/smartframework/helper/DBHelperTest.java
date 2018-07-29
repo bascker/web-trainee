@@ -1,4 +1,4 @@
-package com.bascker.manage.util;
+package com.bascker.smartframework.helper;
 
 import org.testng.annotations.Test;
 
