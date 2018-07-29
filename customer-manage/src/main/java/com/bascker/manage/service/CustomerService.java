@@ -1,7 +1,7 @@
 package com.bascker.manage.service;
 
 import com.bascker.manage.model.Customer;
-import com.bascker.manage.util.DBHelper;
+import com.bascker.smartframework.util.DBHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

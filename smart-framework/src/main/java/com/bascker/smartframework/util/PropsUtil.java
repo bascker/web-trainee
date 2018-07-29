@@ -1,4 +1,4 @@
-package com.bascker.manage.util;
+package com.bascker.smartframework.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

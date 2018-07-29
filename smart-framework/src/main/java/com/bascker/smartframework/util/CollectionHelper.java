@@ -1,4 +1,4 @@
-package com.bascker.manage.util;
+package com.bascker.smartframework.util;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;

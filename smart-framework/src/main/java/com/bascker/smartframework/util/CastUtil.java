@@ -1,4 +1,4 @@
-package com.bascker.manage.util;
+package com.bascker.smartframework.util;
 
 import org.apache.commons.lang3.StringUtils;
 
