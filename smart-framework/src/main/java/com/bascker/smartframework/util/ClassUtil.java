@@ -13,7 +13,6 @@ import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 /**
@@ -72,6 +71,7 @@ public class ClassUtil {
     public static Set<Class<?>> getClasses(final String packageName) {
         final Set<Class<?>> classSet = new HashSet<>();
         try {
+
             final Enumeration<URL> urls = getClassLoader().getResources(packageName.replace(".", "/"));
             while (urls.hasMoreElements()) {
                 final URL url = urls.nextElement();
@@ -81,20 +81,19 @@ public class ClassUtil {
                         final String packagePath = url.getPath().replaceAll("%20", " ");
                         addClass(classSet, packagePath, packageName);
                     } else if (PROTOCOL_JAR.equals(protocol)) {
+                        // 从 jae 包中读取文件
                         final JarURLConnection jarURLConnection = (JarURLConnection) url.openConnection();
                         if (Objects.nonNull(jarURLConnection)) {
                             final JarFile jarFile = jarURLConnection.getJarFile();
                             if (Objects.nonNull(jarFile)) {
-                                final Enumeration<JarEntry> jarEntries = jarFile.entries();
-                                while (jarEntries.hasMoreElements()) {
-                                    final JarEntry entry = jarEntries.nextElement();
-                                    final String entryName = entry.getName();
+                                jarFile.stream().forEach(jarEntry -> {
+                                    final String entryName = jarEntry.getName();
                                     if (StringUtils.endsWith(entryName, ".class")) {
                                         final String className = entryName.substring(0, entryName.lastIndexOf("."))
                                                 .replaceAll("/", ".");
                                         doAddClass(classSet, className);
                                     }
-                                }
+                                });
                             }
                         }
                     }
@@ -108,11 +107,22 @@ public class ClassUtil {
         return classSet;
     }
 
+    /**
+     * 加载一个 class 对象，并加入集合中
+     * @param classSet
+     * @param className
+     */
     private static void doAddClass(final Set<Class<?>> classSet, final String className) {
         final Class<?> cls = loadClass(className);
         classSet.add(cls);
     }
 
+    /**
+     * 将某个包下的所有 class 文件加入集合中
+     * @param classSet
+     * @param packagePath
+     * @param packageName
+     */
     private static void addClass(final Set<Class<?>> classSet, final String packagePath, final String packageName) {
         final File[] files = new File(packagePath).listFiles(file ->
                 (file.isFile() && StringUtils.endsWith(file.getName(), ".class")) || file.isDirectory());
@@ -133,6 +143,7 @@ public class ClassUtil {
                 if (StringUtils.isNotEmpty(packageName)) {
                     subPackageName = packageName + "." + subPackageName;
                 }
+                // 递归
                 addClass(classSet, subPackagePath, subPackageName);
             }
         });
