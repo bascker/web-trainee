@@ -31,6 +31,24 @@ public class CollectionHelper {
         return MapUtils.isEmpty(map);
     }
 
+    /**
+     * 判断 Collection 是否非空
+     * @param collection
+     * @return
+     */
+    public static boolean isNotEmpty(final Collection<?> collection) {
+        return !isEmpty(collection);
+    }
+
+    /**
+     * 判断 Map 是否非空
+     * @param map
+     * @return
+     */
+    public static boolean isNotEmpty(final Map<?, ?> map) {
+        return !isEmpty(map);
+    }
+
     private CollectionHelper() {}
 
 }

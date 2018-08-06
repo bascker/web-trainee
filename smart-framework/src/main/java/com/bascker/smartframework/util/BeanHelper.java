@@ -19,7 +19,7 @@ public class BeanHelper {
     /**
      * 定义 Bean 映射，存放 Bean 类与 Bean 实例之间的关系. key-value: BeanClass-BeanInstance
      */
-    public static final Map<Class<?>, Object> BEAN_MAP = new HashMap<>();
+    private static final Map<Class<?>, Object> BEAN_MAP = new HashMap<>();
 
     static {
         final Set<Class<?>> beanClassSet = ClassHelper.getBeanClassSet();
