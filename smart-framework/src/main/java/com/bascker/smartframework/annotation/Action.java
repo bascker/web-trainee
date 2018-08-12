@@ -16,6 +16,11 @@ import java.lang.annotation.Target;
 public @interface Action {
 
     /**
+     * Controller Action 的 value 规则
+     */
+    String VALUE_REGEX = "\\w+:/\\w*";
+
+    /**
      * 请求类型与路径，key-value 形式, 如 get:/users
      * @return
      */

@@ -1,4 +1,7 @@
-package com.bascker.smartframework.util;
+package com.bascker.smartframework.helper;
+
+import com.bascker.smartframework.util.ConfigConstant;
+import com.bascker.smartframework.util.PropsUtil;
 
 import java.util.Properties;
 

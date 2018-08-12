@@ -1,4 +1,4 @@
-package com.bascker.smartframework.util;
+package com.bascker.smartframework.helper;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
@@ -10,6 +10,7 @@ import java.util.Map;
  * Collection 工具类
  *
  * @author bascker
+ * @since 1.0.0
  */
 public class CollectionHelper {
 

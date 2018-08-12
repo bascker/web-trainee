@@ -11,6 +11,9 @@ import java.util.Properties;
 
 /**
  * Properties 文件工具类
+ *
+ * @author bascker
+ * @since 1.0.0
  */
 public class PropsUtil {
 

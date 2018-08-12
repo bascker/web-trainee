@@ -1,8 +1,9 @@
-package com.bascker.smartframework.util;
+package com.bascker.smartframework.helper;
 
 import com.bascker.smartframework.annotation.Controller;
 import com.bascker.smartframework.annotation.Repository;
 import com.bascker.smartframework.annotation.Service;
+import com.bascker.smartframework.util.ClassUtil;
 
 import java.util.Collections;
 import java.util.HashSet;
