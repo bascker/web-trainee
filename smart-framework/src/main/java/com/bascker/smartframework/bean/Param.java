@@ -35,6 +35,14 @@ public class Param {
         return paramMap;
     }
 
+    /**
+     * 判断参数是否为空
+     * @return
+     */
+    public boolean isEmpty() {
+        return paramMap.isEmpty();
+    }
+
     @Override
     public String toString() {
         return "Param{" +

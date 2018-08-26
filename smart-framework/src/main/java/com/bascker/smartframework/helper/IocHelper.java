@@ -26,6 +26,7 @@ public class IocHelper {
         final Map<Class<?>, Object> beanMap = BeanHelper.getBeanMap();
         if (CollectionHelper.isNotEmpty(beanMap)) {
             beanMap.forEach((beanClass, beanInstance) -> {
+                // TODO: @Inject 自动注入存在问题
                 // 获取 Bean 类定义的所有成员变量（简称 Bean Field）
                 final Field[] beanFields = beanClass.getFields();
                 if (ArrayUtils.isNotEmpty(beanFields)) {

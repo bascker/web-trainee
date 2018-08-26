@@ -2,6 +2,8 @@ package com.bascker.smartframework.helper;
 
 import com.bascker.smartframework.util.ConfigConstant;
 import com.bascker.smartframework.util.PropsUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 

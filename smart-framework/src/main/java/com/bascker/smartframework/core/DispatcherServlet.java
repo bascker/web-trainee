@@ -14,6 +14,8 @@ import com.bascker.smartframework.util.ReflectionUtil;
 import com.bascker.smartframework.util.StreamUtil;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -41,8 +43,12 @@ import java.util.Objects;
 @WebServlet(urlPatterns = "/*", loadOnStartup = 0)
 public class DispatcherServlet extends HttpServlet {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DispatcherServlet.class);
+
     @Override
     public void init(final ServletConfig config) throws ServletException {
+        LOGGER.debug("[smart] init dispatcher servlet");
+
         // 初始化相关 Helper
         HelperLoader.init();
 
@@ -63,6 +69,7 @@ public class DispatcherServlet extends HttpServlet {
         // 获取请求方法和请求路径
         final String reqMethod = req.getMethod().toLowerCase();
         final String reqPath = req.getPathInfo();
+        LOGGER.debug("[smart] deal request: {} {}", reqMethod, reqPath);
 
         // 获取 Action 处理器
         final Handler handler = ControllerHelper.getHandler(reqMethod, reqPath);
@@ -98,7 +105,12 @@ public class DispatcherServlet extends HttpServlet {
 
             // 调用 Action 方法
             final Method method = handler.getActionMethod();
-            final Object result = ReflectionUtil.invokeMethod(controllerBean, method, param);
+            Object result = null;
+            if (param.isEmpty()) {
+                result = ReflectionUtil.invokeMethod(controllerBean, method);
+            } else {
+                result = ReflectionUtil.invokeMethod(controllerBean, method, param);
+            }
 
             // 处理 Action 方法返回值
             if (result instanceof View) {
