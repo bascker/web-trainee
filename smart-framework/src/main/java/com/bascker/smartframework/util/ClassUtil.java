@@ -69,13 +69,15 @@ public class ClassUtil {
      * @return
      */
     public static Set<Class<?>> getClasses(final String packageName) {
+        LOGGER.debug("[smart] start getClasses, packageName = {}", packageName);
+
         final Set<Class<?>> classSet = new HashSet<>();
         try {
-
             final Enumeration<URL> urls = getClassLoader().getResources(packageName.replace(".", "/"));
             while (urls.hasMoreElements()) {
                 final URL url = urls.nextElement();
                 if (Objects.nonNull(url)) {
+                    LOGGER.debug("[smart] url = {}", url);
                     final String protocol = url.getProtocol();
                     if (PROTOCOL_FILE.equals(protocol)) {
                         final String packagePath = url.getPath().replaceAll("%20", " ");
@@ -113,7 +115,7 @@ public class ClassUtil {
      * @param className
      */
     private static void doAddClass(final Set<Class<?>> classSet, final String className) {
-        final Class<?> cls = loadClass(className);
+        final Class<?> cls = loadClass(className, false);
         classSet.add(cls);
     }
 
@@ -124,15 +126,19 @@ public class ClassUtil {
      * @param packageName
      */
     private static void addClass(final Set<Class<?>> classSet, final String packagePath, final String packageName) {
+        LOGGER.debug("[smart] addClass start, packageName is {}, packagePath is {}", packageName, packagePath);
         final File[] files = new File(packagePath).listFiles(file ->
                 (file.isFile() && StringUtils.endsWith(file.getName(), ".class")) || file.isDirectory());
         Arrays.stream(files).forEach(file -> {
             final String filename = file.getName();
+            LOGGER.debug("[smart] filename is {}", filename);
             if (file.isFile()) {
                 String className = filename.substring(0, filename.lastIndexOf("."));
                 if (StringUtils.isNotEmpty(packageName)) {
                     className = packageName + "." + className;
                 }
+
+                LOGGER.debug("[smart] add {} to set", className);
                 doAddClass(classSet, className);
             } else {
                 String subPackagePath = filename;
@@ -143,6 +149,7 @@ public class ClassUtil {
                 if (StringUtils.isNotEmpty(packageName)) {
                     subPackageName = packageName + "." + subPackageName;
                 }
+                LOGGER.debug("[smart] subPackagePath is {}", subPackagePath);
                 // 递归
                 addClass(classSet, subPackagePath, subPackageName);
             }

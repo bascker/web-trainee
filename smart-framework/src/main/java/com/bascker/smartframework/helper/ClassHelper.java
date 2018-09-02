@@ -4,6 +4,8 @@ import com.bascker.smartframework.annotation.Controller;
 import com.bascker.smartframework.annotation.Repository;
 import com.bascker.smartframework.annotation.Service;
 import com.bascker.smartframework.util.ClassUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,6 +19,8 @@ import java.util.Set;
  */
 public class ClassHelper {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClassHelper.class);
+
     /**
      * 定义类集合，用于存放所加载的类
      */
@@ -24,6 +28,7 @@ public class ClassHelper {
 
     static {
         final String basePackage = ConfigHelper.getAppBasePackage();
+        LOGGER.info("[smart] get all of classes from {}", basePackage);
         CLASS_SET = ClassUtil.getClasses(basePackage);
     }
 

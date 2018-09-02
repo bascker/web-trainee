@@ -25,7 +25,9 @@ public class BeanHelper {
 
     static {
         final Set<Class<?>> beanClassSet = ClassHelper.getBeanClassSet();
+        LOGGER.debug("beanClassSet size = {}, value is {}", beanClassSet.size(), beanClassSet);
         beanClassSet.forEach(clazz -> {
+            LOGGER.debug("new instance {}", clazz);
             final Object obj = ReflectionUtil.newInstance(clazz);
             BEAN_MAP.put(clazz, obj);
         });

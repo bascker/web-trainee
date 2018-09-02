@@ -5,6 +5,8 @@ import com.bascker.smartframework.helper.ClassHelper;
 import com.bascker.smartframework.helper.ControllerHelper;
 import com.bascker.smartframework.helper.IocHelper;
 import com.bascker.smartframework.util.ClassUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
@@ -16,7 +18,10 @@ import java.util.Arrays;
  */
 public class HelperLoader {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(HelperLoader.class);
+
     public static void init() {
+        LOGGER.info("[smart] init smart framework");
         final Class<?>[] classes = {
             ClassHelper.class,
             BeanHelper.class,
@@ -24,7 +29,7 @@ public class HelperLoader {
             ControllerHelper.class
         };
 
-        Arrays.stream(classes).forEach(clazz -> ClassUtil.loadClass(clazz.getName()));
+        Arrays.stream(classes).forEach(clazz -> ClassUtil.loadClass(clazz.getName(), true));
     }
 
 }

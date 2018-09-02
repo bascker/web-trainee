@@ -1,6 +1,7 @@
 package com.bascker.manage.service;
 
 import com.bascker.manage.model.Customer;
+import com.bascker.smartframework.annotation.Service;
 import com.bascker.smartframework.helper.DBHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import java.util.Map;
  *
  * @author bascker
  */
+@Service
 public class CustomerService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerService.class);

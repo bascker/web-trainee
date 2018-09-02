@@ -4,6 +4,7 @@ import com.bascker.manage.model.Customer;
 import com.bascker.manage.service.CustomerService;
 import com.bascker.smartframework.annotation.Action;
 import com.bascker.smartframework.annotation.Controller;
+import com.bascker.smartframework.annotation.Inject;
 import com.bascker.smartframework.bean.Data;
 import com.bascker.smartframework.bean.Param;
 import com.bascker.smartframework.bean.View;
@@ -23,7 +24,8 @@ public class CustomerController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
 
-    private CustomerService customerService = new CustomerService();
+    @Inject
+    private CustomerService customerService;
 
     @Action("GET:/customer")
     public View index() {

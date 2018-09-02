@@ -22,15 +22,17 @@ public class IocHelper {
     private static final Logger LOGGER = LoggerFactory.getLogger(IocHelper.class);
 
     static {
+        LOGGER.info("[smart] IOC init");
         // 获取所有 Bean 类和 Bean 实例之间的映射关系（简称 Bean Map）
         final Map<Class<?>, Object> beanMap = BeanHelper.getBeanMap();
         if (CollectionHelper.isNotEmpty(beanMap)) {
             beanMap.forEach((beanClass, beanInstance) -> {
-                // TODO: @Inject 自动注入存在问题
                 // 获取 Bean 类定义的所有成员变量（简称 Bean Field）
-                final Field[] beanFields = beanClass.getFields();
+                final Field[] beanFields = beanClass.getDeclaredFields();
+                LOGGER.debug("[smart] get all of fields from {}, fileds is {}", beanClass, Arrays.toString(beanFields));
                 if (ArrayUtils.isNotEmpty(beanFields)) {
                     Arrays.stream(beanFields).forEach(beanField -> {
+                        beanField.setAccessible(true);
                         // 判断当前成员变量是否带有 @Inject
                         if (beanField.isAnnotationPresent(Inject.class)) {
                             // 获取 Bean Field 对应的实例
