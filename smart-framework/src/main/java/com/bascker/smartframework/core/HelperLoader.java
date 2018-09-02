@@ -29,7 +29,7 @@ public class HelperLoader {
             ControllerHelper.class
         };
 
-        Arrays.stream(classes).forEach(clazz -> ClassUtil.loadClass(clazz.getName(), true));
+        Arrays.stream(classes).forEach(clazz -> ClassUtil.loadClass(clazz.getName()));
     }
 
 }
