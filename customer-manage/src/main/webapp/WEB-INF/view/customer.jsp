@@ -9,6 +9,8 @@
 <html>
 <head>
     <title>客户管理</title>
+    <link rel="stylesheet" href="${BASE}/asset/bootstrap/bootstrap.min.css"/>
+    <script src="${BASE}/asset/js/jquery-2.1.4.min.js"></script>
 </head>
 <body>
     <div>

@@ -29,6 +29,7 @@ public class CustomerController {
     @Action("GET:/customers")
     public View index() {
         final List<Customer> customers = customerService.list();
+        LOGGER.debug("customers = {}", customers);
         return new View("customer.jsp").addAttribute("customers", customers);
     }
 
