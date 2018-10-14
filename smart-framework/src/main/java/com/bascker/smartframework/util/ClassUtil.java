@@ -52,6 +52,7 @@ public class ClassUtil {
      * @return
      */
     public static Class<?> loadClass(final String className, final boolean isInitialized) {
+        LOGGER.info("[smart] load {}, initialized = {}", className, isInitialized);
         Class<?> clazz = null;
         try {
             clazz = Class.forName(className, isInitialized, getClassLoader());
