@@ -29,7 +29,8 @@ public class HelperLoader {
             ControllerHelper.class
         };
 
-        Arrays.stream(classes).forEach(clazz -> ClassUtil.loadClass(clazz.getName()));
+        // TODO: isInitialized 为 false 时，@Inject 存在问题
+        Arrays.stream(classes).forEach(clazz -> ClassUtil.loadClass(clazz.getName(), true));
     }
 
 }
