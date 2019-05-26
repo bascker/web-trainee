@@ -9,12 +9,13 @@
 <html>
 <head>
     <title>客户管理</title>
+    <!-- TODO: 静态资源的请求被 Smart 框架拦截掉了  -->
     <link rel="stylesheet" href="${BASE}/asset/bootstrap/bootstrap.min.css"/>
     <script src="${BASE}/asset/js/jquery-2.1.4.min.js"></script>
 </head>
 <body>
     <div>
-        <a href="/customers/create" name="btn-create">新增</a>
+        <a href="/customers/create" name="btn-create" class="btn btn-primary">新增</a>
     </div>
     <table>
         <thead>

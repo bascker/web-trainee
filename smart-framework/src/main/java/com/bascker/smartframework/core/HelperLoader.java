@@ -1,9 +1,6 @@
 package com.bascker.smartframework.core;
 
-import com.bascker.smartframework.helper.BeanHelper;
-import com.bascker.smartframework.helper.ClassHelper;
-import com.bascker.smartframework.helper.ControllerHelper;
-import com.bascker.smartframework.helper.IocHelper;
+import com.bascker.smartframework.helper.*;
 import com.bascker.smartframework.util.ClassUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,11 +19,13 @@ public class HelperLoader {
 
     public static void init() {
         LOGGER.info("[smart] init smart framework");
+        // 初始化各助手类: AopHelp 需在 IocHelper 之前加载，AopHelper 获取代理对象后，才能通过 IocHelper 进行依赖注入
         final Class<?>[] classes = {
             ClassHelper.class,
             BeanHelper.class,
+            AopHelper.class,
             IocHelper.class,
-            ControllerHelper.class
+            ControllerHelper.class,
         };
 
         // TODO: isInitialized 为 false 时，@Inject 存在问题

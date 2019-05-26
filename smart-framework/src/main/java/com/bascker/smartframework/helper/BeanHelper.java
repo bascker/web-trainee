@@ -55,6 +55,10 @@ public class BeanHelper {
         return (T) BEAN_MAP.get(clazz);
     }
 
+    public static void setBean(final Class<?> cls, Object obj) {
+        BEAN_MAP.put(cls, obj);
+    }
+
     private BeanHelper() {}
 
 }

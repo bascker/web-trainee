@@ -7,12 +7,13 @@ import com.bascker.smartframework.util.ClassUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.annotation.Annotation;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 类操作助手类
+ * 类操作助手类: 反射工具类
  *
  * @author bascker
  * @since 1.0.0
@@ -91,6 +92,50 @@ public class ClassHelper {
         beanClassSet.addAll(getRepositoryClasses());
 
         return beanClassSet;
+    }
+
+    /**
+     * 获取应用包下某父类/接口的所有子类
+     * @param superClass 父类/接口
+     * @return
+     */
+    public static Set<Class<?>> getClassSetBySuper(final Class<?> superClass) {
+        final Set<Class<?>> classSet = new HashSet<>();
+        for (Class<?> cls : CLASS_SET) {
+            if (isSuperClass(superClass, cls)) {
+                classSet.add(cls);
+            }
+        }
+
+        return classSet;
+    }
+
+    /**
+     * 获取应用包名下带有某注解的所有类
+     * @param annotationClass
+     * @return
+     */
+    public static Set<Class<?>> getClassSetByAnnotation(final Class<? extends Annotation> annotationClass) {
+        final Set<Class<?>> classSet = new HashSet<>();
+        for (Class<?> cls : CLASS_SET) {
+            // x.isAnnotationPresent(y): 判断类 x 是否被 y 所注解
+            if (cls.isAnnotationPresent(annotationClass)) {
+                classSet.add(cls);
+            }
+        }
+
+        return classSet;
+    }
+
+    /**
+     * 判断类 x 是否是类 y 的父类/接口
+     * @param x
+     * @param y
+     * @return
+     */
+    private static boolean isSuperClass(Class<?> x, Class<?> y) {
+        // x.isAssignableFrom(y): 判断 x 跟 y 是否相同，或者 x 是 y 的父类/接口
+        return x.isAssignableFrom(y) && !x.equals(y);
     }
 
 }
